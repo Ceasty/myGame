@@ -2,14 +2,42 @@ import pygame
 
 class Ship:
 
-	def __init__(self, info_world_game):
-		self.screen = info_world_game.screen
-		self.screen_rect = info_world_game.screen.get_rect()
+	def __init__(self, AlienWorld):
+		self.screen = AlienWorld.screen
+		self.screen_rect = AlienWorld.screen.get_rect()
 
-		self.image = pygame.image.load('img/ship.PNG')
+		self.settings = AlienWorld.my_settings
+
+		self.image = pygame.image.load("img/ship.PNG")
 		self.rect = self.image.get_rect()
 
 		self.rect.midbottom = self.screen_rect.midbottom
+
+		self.x = float(self.rect.x)
+		self.y = float(self.rect.y)
+
+		#Status Movement
+		self.moving_up = False
+		self.moving_down = False
+		self.moving_right = False
+		self.moving_left = False
+
+	def update(self):
+		if self.moving_up:
+			#self.rect.y -=5
+			self.y -= self.settings.ship_speed
+		if self.moving_down:
+			#self.rect.y +=5
+			self.y += self.settings.ship_speed
+		if self.moving_right:
+			#self.rect.x +=5
+			self.x += self.settings.ship_speed
+		if self.moving_left:
+			#self.rect.x -=5
+			self.x -= self.settings.ship_speed
+
+		self.rect.x = self.x
+		self.rect.y = self.y
 
 	def blit_ship(self):
 		#update frame dalam game every location

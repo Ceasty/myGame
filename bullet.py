@@ -15,7 +15,7 @@ class Bullet(Sprite):
 
 		self.rect = pygame.Rect(0,0, self. settings.bullet_width, self.settings.bullet_height)
 
-		self.rect.midtop = AlienWorld.my_ship.rect.midtop
+		self.rect.midtop = AlienWorld.my_toilet.rect.midtop
 
 		self.y = float(self.rect.y)
 
